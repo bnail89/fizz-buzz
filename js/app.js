@@ -1,22 +1,35 @@
-for(var i = 1; i <=100; ++i){
-    
-    if(i % 15 === 0){
-        document.write("FizzBuzz");
-        document.write("<br/>");
-    }
-    
-    else if(i % 3 === 0){
-        document.write("Fizz");
-        document.write("<br/>");
-    }
-    
-    else if(i % 5 === 0){
-        document.write("Buzz");
-        document.write("<br/>");
+$(document).ready(function(){
+    function fizzBuzz(maxVal){
+        for (var count = 1; count <= maxVal; count++) {
+
+            if (count % 3 == 0 && count % 5 == 0) {
+                $('.content').append('FizzBuzz ');
+            }
+
+            else if (count % 3 == 0){
+               $('.content').append('Fizz ');
+            }
+
+            else if (count % 5 == 0){
+                $('.content').append('Buzz ');
+            }
+
+            else{
+                $('.content').append(count + ' ');
+            }
+        }
     }
 
-    else{
-        document.write(i);
-        document.write("<br/>");
-    }
-}
+    $("#enterNumber").on('click', function(){
+        var getValue = $("#numberInput").val();
+        if (getValue % 1 == 0 && getValue <= 500) {
+            $(".content").empty();
+                fizzBuzz(getValue);
+                $("#numberInput").val("");
+            }
+            else {
+                alert("Type only numbers between 1 and 500.");
+                $("#numberInput").val("");
+            }
+    });
+});
